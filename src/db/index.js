@@ -6,7 +6,7 @@ const url = `mongodb://${dbConfig.host}/${dbConfig.database}`
 
 
 let initDB = () => {
-    mongoose.connect(url, (err) => {
+    mongoose.connect(url, { useNewUrlParser: true }, (err) => {
         if (err) {
             throw new Error("mongodb connect fail")
         }

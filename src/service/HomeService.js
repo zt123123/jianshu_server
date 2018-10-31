@@ -1,14 +1,12 @@
+let { ArticleModel } = require("../db/model")
 
 class HomeService {
     constructor() {
 
     }
-    static index() {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(1111111)
-            }, 5000);
-        })
+    static async index() {
+        let data = await ArticleModel.find({})
+        return data
     }
 }
 

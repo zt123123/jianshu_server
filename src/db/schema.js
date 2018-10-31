@@ -1,19 +1,20 @@
 const mongoose = require("mongoose")
+let Schema = mongoose.Schema
 
-const topicSchema = mongoose.Schema({
+const topicSchema = new Schema({
     id: Number,
     title: String,
     imgUrl: String
 });
 
-const articleSchema = mongoose.Schema({
+const articleSchema = new Schema({
     id: Number,
     title: String,
     desc: String,
     imgUrl: String
 });
 
-const tagSchema = mongoose.Schema({
+const tagSchema = new Schema({
     id: Number,
     label: String,
 });

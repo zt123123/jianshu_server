@@ -6,7 +6,7 @@ class HomeController {
     }
     static async index(ctx) {
         let res = await HomeService.index()
-        await ctx.render('index', { res });
+        ctx.json({ errcode: 0, errmsg: "ok", data: res })
     }
 }
 module.exports = HomeController
