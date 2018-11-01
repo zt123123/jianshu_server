@@ -4,12 +4,8 @@ import {
     httpGet,
     httpPost,
     requestParam,
-    queryParam,
     requestBody,
-    request
 } from 'inversify-koa-utils';
-
-import { Request } from "koa"
 
 import { inject, injectable } from 'inversify';
 import { Article } from '../model/index';
@@ -34,9 +30,10 @@ class HomeController implements interfaces.Controller {
     }
 
     @httpPost('/')
-    public async addArticle(@request("req") request: any): Promise<Article> {
-        console.log(request);
-        return await this.homeService.addArticle(2);
+    public async addArticle(@requestBody() article: Article): Promise<Article> {
+        if (article && article.id) {
+            return await this.homeService.addArticle(article);
+        }
     }
 }
 

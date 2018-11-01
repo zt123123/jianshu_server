@@ -1,6 +1,7 @@
 import { interfaces, InversifyKoaServer, TYPE } from 'inversify-koa-utils';
 import 'reflect-metadata';
 import { Container } from 'inversify';
+const bodyParser = require('koa-bodyparser')
 
 import { MongoDBClient } from './utils/mongodb/client';
 
@@ -19,11 +20,12 @@ container.bind<HomeService>(TYPES.HomeService).to(HomeService);
 
 let server = new InversifyKoaServer(container);
 
-// server.setConfig((app) => {
-//     app.use(logger)
-//         .use(timer)
-//         .use(json)
-// });
+server.setConfig((app) => {
+    app.use(logger)
+        .use(timer)
+        .use(json)
+        .use(bodyParser())
+});
 
 let app = server.build();
 export default app
