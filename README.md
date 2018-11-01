@@ -1,6 +1,7 @@
 # jianshu_server
 
 + koa2
++ typescript
 + mongoose
 + ejs
 + MVC
