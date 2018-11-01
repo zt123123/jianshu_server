@@ -1,31 +1,42 @@
 import {
-    controller, httpGet, httpPost
+    interfaces,
+    controller,
+    httpGet,
+    httpPost,
+    requestParam,
+    queryParam,
+    requestBody,
+    request
 } from 'inversify-koa-utils';
-import { inject } from 'inversify';
-import HomeService from '../service/HomeService';
-const TYPES = {
-    UserService: Symbol.for('UserService')
-};
 
-@controller('/')
-class HomeController {
+import { Request } from "koa"
+
+import { inject, injectable } from 'inversify';
+import { Article } from '../model/index';
+import HomeService from '../service/HomeService';
+import TYPES from '../constant/types';
+
+@controller('/article')
+@injectable()
+class HomeController implements interfaces.Controller {
     constructor(
-        @inject(TYPES.UserService) private homeService: HomeService
+        @inject(TYPES.HomeService) private homeService: HomeService
     ) { }
 
     @httpGet('/')
-    public getUser() {
+    public getUsers(): Promise<Article[]> {
         return this.homeService.getUsers();
     }
 
+    @httpGet('/:id')
+    public async getUser(@requestParam("id") id: string): Promise<Article> {
+        return await this.homeService.getUser(parseInt(id));
+    }
+
     @httpPost('/')
-    public postUser() {
-        return this.homeService.newUser({
-            id: 5,
-            title: "父亲的偏执，逼疯了才貌双全的女儿",
-            desc: "她是我中学同学。 那时的她貌美如花，一头瀑布般的长发又黑又亮，皮肤白里透红，眉目如星，灿若星辰，一颦一笑都堪比林黛玉，最让人嫉妒的是她的才华，我...",
-            imgUrl: "https://static.nodeveloper.top/img/1.jpg"
-        });
+    public async addArticle(@request("req") request: any): Promise<Article> {
+        console.log(request);
+        return await this.homeService.addArticle(2);
     }
 }
 

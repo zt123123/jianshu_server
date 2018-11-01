@@ -19,7 +19,7 @@ export class MongoDBConnection {
   }
 
   private static connect(result: (error, db: Db) => void) {
-    MongoClient.connect(connStr, (err, client) => {
+    MongoClient.connect(connStr, { useNewUrlParser: true }, (err, client) => {
       this.db = client.db(dbName);
       this.isConnected = true;
       return result(err, this.db);

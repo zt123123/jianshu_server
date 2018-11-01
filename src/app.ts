@@ -2,24 +2,28 @@ import { interfaces, InversifyKoaServer, TYPE } from 'inversify-koa-utils';
 import 'reflect-metadata';
 import { Container } from 'inversify';
 
+import { MongoDBClient } from './utils/mongodb/client';
+
+import TYPES from './constant/types';
+
 import HomeController from "./controller/HomeController";
 import HomeService from "./service/HomeService";
 
 let container = new Container();
 
-// import middleWare from "./middleware"
-// import initDB from "./db"
+import { logger, timer, json } from "./middleware"
 
-
-
+container.bind<MongoDBClient>(TYPES.MongoDBClient).to(MongoDBClient);
 container.bind<interfaces.Controller>(TYPE.Controller).to(HomeController).whenTargetNamed('HomeController');
-container.bind<HomeService>('FooService').to(HomeService);
+container.bind<HomeService>(TYPES.HomeService).to(HomeService);
 
 let server = new InversifyKoaServer(container);
 
+// server.setConfig((app) => {
+//     app.use(logger)
+//         .use(timer)
+//         .use(json)
+// });
+
 let app = server.build();
-
-// initDB()
-// middleWare(app)
-
 export default app

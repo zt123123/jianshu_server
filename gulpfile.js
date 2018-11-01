@@ -28,5 +28,5 @@ gulp.task("build", function () {
 });
 
 gulp.task("default", function (cb) {
-    runSequence("lint", "build", cb);
+    runSequence("build", cb);
 });
