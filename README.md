@@ -10,7 +10,7 @@
 
 1. To get started, run the follow :
 
-```
+```bash
 $ npm install
 ```
 
@@ -19,14 +19,14 @@ $ npm install
 2. for a development:
 
 ```bash
-npm run dev
+$ npm run dev
 ```
 
 ## Unit test
 
 3. for a unit test:
 
-```
-npm run test
+```bash
+$ npm run test
 ```
 
