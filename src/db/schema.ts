@@ -1,12 +1,10 @@
-const mongoose = require("mongoose")
-let Schema = mongoose.Schema
+import { Schema } from "mongoose"
 
 const topicSchema = new Schema({
     id: Number,
     title: String,
     imgUrl: String
 });
-
 const articleSchema = new Schema({
     id: Number,
     title: String,
@@ -19,7 +17,7 @@ const tagSchema = new Schema({
     label: String,
 });
 
-module.exports = {
+export {
     topicSchema,
     articleSchema,
     tagSchema

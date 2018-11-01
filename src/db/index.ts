@@ -1,6 +1,6 @@
-const { dbConfig } = require("../config")
+import { dbConfig } from "../config"
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const url = `mongodb://${dbConfig.host}/${dbConfig.database}`
 
@@ -10,8 +10,7 @@ let initDB = () => {
         if (err) {
             throw new Error("mongodb connect fail")
         }
-        console.log("connect success");
     });
 }
 
-module.exports = initDB
+export default initDB

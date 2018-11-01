@@ -1,15 +1,13 @@
-let { serverConfig } = require("../config")
-const render = require('koa-ejs');
+import { serverConfig } from "../config"
+import render from 'koa-ejs'
 
-let router = require("../router")
+import router from "../router"
 
 const logger = async (ctx, next) => {
-    console.log("logger")
     await next()
 }
 
 const timer = async (ctx, next) => {
-    console.log(new Date().toLocaleString())
     await next()
 }
 
@@ -22,7 +20,7 @@ const json = async (ctx, next) => {
     await next()
 }
 
-module.exports = (app) => {
+export default (app) => {
     render(app, {
         root: serverConfig.staticRoot,
         layout: false,
