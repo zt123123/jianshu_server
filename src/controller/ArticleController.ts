@@ -3,6 +3,8 @@ import {
     controller,
     httpGet,
     httpPost,
+    httpDelete,
+    httpPut,
     requestParam,
     requestBody,
 } from 'inversify-koa-utils';
@@ -29,23 +31,21 @@ class ArticleController implements interfaces.Controller {
         return await this.ArticleService.getArticle(parseInt(id));
     }
 
-    @httpPost('/del/:id')
-    public async removeArticle(@requestBody() id: number): Promise<Article> {
-        return await this.ArticleService.removeArticle(id);
-    }
-
-    @httpPost('/update')
-    public async updateArticle(@requestBody() article: Article, @requestBody() id: number): Promise<Article> {
-        if (article && article.id) {
-            return await this.ArticleService.updateArticle(id, article);
-        }
-    }
-
-    @httpPost('/add')
+    @httpPost('/')
     public async addArticle(@requestBody() article: Article): Promise<Article> {
         if (article && article.id) {
             return await this.ArticleService.addArticle(article);
         }
+    }
+
+    @httpDelete('/:id')
+    public async removeArticle(@requestParam("id") id: number): Promise<Article> {
+        return await this.ArticleService.removeArticle(id);
+    }
+
+    @httpPut('/:id')
+    public async updateArticle(@requestParam("id") id: number, @requestBody() article: Article, ): Promise<Article> {
+        return await this.ArticleService.updateArticle(id, article);
     }
 }
 

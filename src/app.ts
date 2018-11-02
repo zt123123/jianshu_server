@@ -19,6 +19,7 @@ import { logger, timer, json } from "./middleware"
 container.bind<MongoDBClient>(TYPES.MongoDBClient).to(MongoDBClient);
 container.bind<interfaces.Controller>(TYPE.Controller).to(ArticleController).whenTargetNamed('ArticleController');
 container.bind<interfaces.Controller>(TYPE.Controller).to(HomeController).whenTargetNamed('HomeController');
+
 container.bind<ArticleService>(TYPES.ArticleService).to(ArticleService);
 container.bind<HomeService>(TYPES.HomeService).to(HomeService);
 

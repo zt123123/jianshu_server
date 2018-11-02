@@ -8,13 +8,13 @@ describe('HomeController', () => {
     beforeEach(() => {
         controller = new HomeController(new HomeService());
     });
-    it('should get welcome', () => {
-        let data = controller.index()
-        expect(data).to.deep.equal(
-            {
-                errcode: 0,
-                errmsg: "welcome"
-            }
-        );
-    });
+    // it('should get welcome', () => {
+    //     let data = controller.index()
+    //     expect(data).to.deep.equal(
+    //         {
+    //             errcode: 0,
+    //             errmsg: "welcome"
+    //         }
+    //     );
+    // });
 });
