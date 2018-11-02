@@ -29,7 +29,19 @@ class ArticleController implements interfaces.Controller {
         return await this.ArticleService.getArticle(parseInt(id));
     }
 
-    @httpPost('/')
+    @httpPost('/del/:id')
+    public async removeArticle(@requestBody() id: number): Promise<Article> {
+        return await this.ArticleService.removeArticle(id);
+    }
+
+    @httpPost('/update')
+    public async updateArticle(@requestBody() article: Article, @requestBody() id: number): Promise<Article> {
+        if (article && article.id) {
+            return await this.ArticleService.updateArticle(id, article);
+        }
+    }
+
+    @httpPost('/add')
     public async addArticle(@requestBody() article: Article): Promise<Article> {
         if (article && article.id) {
             return await this.ArticleService.addArticle(article);

@@ -15,7 +15,7 @@ export default class HomeService {
 
     public getArticle(id: number): Promise<Article> {
         return new Promise<Article>((resolve, reject) => {
-            this.mongoClient.find('articleList', { id }, (error, data: Article) => {
+            this.mongoClient.findOneById('articleList', id, (error, data: Article) => {
                 if (!error) {
                     resolve(data);
                 } else {
@@ -40,6 +40,30 @@ export default class HomeService {
     public addArticle(article: Article): Promise<Article> {
         return new Promise<Article>((resolve, reject) => {
             this.mongoClient.insert('articleList', article, (error, data: Article) => {
+                if (!error) {
+                    resolve(data);
+                } else {
+                    reject(error)
+                }
+            });
+        });
+    }
+
+    public removeArticle(id: number): Promise<Article> {
+        return new Promise<Article>((resolve, reject) => {
+            this.mongoClient.remove('articleList', id, (error, data: Article) => {
+                if (!error) {
+                    resolve(data);
+                } else {
+                    reject(error)
+                }
+            });
+        });
+    }
+
+    public updateArticle(id: number, article: Article): Promise<Article> {
+        return new Promise<Article>((resolve, reject) => {
+            this.mongoClient.update('articleList', id, article, (error, data: Article) => {
                 if (!error) {
                     resolve(data);
                 } else {
