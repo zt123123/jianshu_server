@@ -31,17 +31,17 @@ export class MongoDBClient {
     });
   }
 
-  public update(collection: string, objectId: string, model: Article, result: (error, data) => void): void {
-    this.db.collection(collection).updateOne(
-      { _id: new ObjectID(objectId) },
-      { $set: model },
-      (error, update) => result(error, model)
-    );
-  }
+  // public update(collection: string, objectId: string, model: Article, result: (error, data) => void): void {
+  //   this.db.collection(collection).updateOne(
+  //     { _id: new ObjectID(objectId) },
+  //     { $set: model },
+  //     (error, update) => result(error, model)
+  //   );
+  // }
 
-  public remove(collection: string, objectId: string, result: (error, data) => void): void {
-    this.db.collection(collection).deleteOne({ _id: new ObjectID(objectId) }, (error, remove) => {
-      return result(error, remove);
-    });
-  }
+  // public remove(collection: string, objectId: string, result: (error, data) => void): void {
+  //   this.db.collection(collection).deleteOne({ _id: new ObjectID(objectId) }, (error, remove) => {
+  //     return result(error, remove);
+  //   });
+  // }
 }

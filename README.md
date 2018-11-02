@@ -9,7 +9,7 @@
 
 ## Installation
 
-1. To get started, run the follow :
+1. To get started, run the follow
 
 ```bash
 $ npm install
@@ -17,15 +17,22 @@ $ npm install
 
 ## Development
 
-2. for a development:
+2. for a development
 
 ```bash
-$ npm run dev
+$ npm start
+```
+
+## Production
+3. build for production
+
+```bash
+$ npm run build
 ```
 
 ## Unit test
 
-3. for a unit test:
+4. for a unit test
 
 ```bash
 $ npm run test

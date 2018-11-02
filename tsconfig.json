@@ -5,11 +5,17 @@
             "es6"
         ],
         "types": [
-            "reflect-metadata"
+            "reflect-metadata",
+            "chai",
+            "mocha"
         ],
         "module": "commonjs",
         "moduleResolution": "node",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true
-    }
+    },
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
 }
